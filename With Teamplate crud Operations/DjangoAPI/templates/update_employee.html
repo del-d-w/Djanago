@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Update Employee</title>
+</head>
+<body>
+    <form method="POST" action="{% url 'update_employee' employee.EmployeeId %}">
+        {% csrf_token %}
+        <input type="hidden" name="_method" value="PUT">
+        <label for="employeeName">Employee Name:</label>
+        <input type="text" name="employeeName" value="{{ employee.EmployeeName }}"><br/><br/>
+        <label for="department">Department:</label>
+        <input type="text" name="department" value="{{ employee.Department }}"><br/><br/>
+        <label for="dateOfJoining">Date of Joining:</label>
+        <input type="date" name="dateOfJoining" value="{{ employee.DateOfJoining|date:'Y-m-d' }}"><br/><br/>
+        <input type="submit" value="Update">
+    </form>
+</body>
+</html>
