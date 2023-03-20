@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <form method="post" action="{% url 'create_user' %}">
+        {% csrf_token %}
+        <label for="employeeName">Employee Name:</label>
+        <input type="text" name="employeeName" id="employeeName"><br/><br/>
+        <label for="department">Department</label>
+        <input type="text" name="department" id="department"><br/><br/>
+        <label for="dateOfJoining">Date Of Joining</label>
+        <input type="date" name="dateOfJoining" id="dateOfJoining"><br/><br/>
+        <button type="submit">Submit</button>
+      </form>
+    {% for obj in data %}
+    <p>{{ obj.EmployeeName }} - {{ obj.Department }} - {{ obj.DateOfJoining }}
+        <a href="{% url 'update_employee' obj.EmployeeId %}">Edit</a>
+        <a href="{% url 'delete_employee' obj.EmployeeId %}">Delete</a>
+    </p>
+    {% endfor %}
+</body>
+</html>
